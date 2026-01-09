@@ -77,11 +77,13 @@ This is how the agent learns and improves over time. Document:
 - Date added
 
 ### Learned Rules
-*(Add new rules here as mistakes occur)*
 
 | Date | Mistake | Rule |
 |------|---------|------|
-| YYYY-MM-DD | [Description of mistake] | [New rule to prevent it] |
+| 2026-01-09 | Almost created custom subagent when official one exists | Always check `anthropics/claude-plugins-official` marketplace before creating custom subagents. Use `claude plugin marketplace add anthropics/claude-plugins-official` first. |
+| 2026-01-09 | PostToolUse hook without error handling could block edits | Always use `|| true` in hook commands (e.g., `npm run format || true`) to prevent hook failures from blocking operations. |
+| 2026-01-09 | Thinking modes capitalized instead of lowercase | Use exact Boris phrasing: "think", "think hard", "think harder", "ultrathink" (all lowercase) to trigger correct behavior. |
+| 2026-01-09 | Assumed HTML renders correctly without verification | Always use Playwright visual verification for web content. Take screenshots to confirm rendering matches expectations. |
 
 ---
 
