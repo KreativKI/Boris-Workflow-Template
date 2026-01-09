@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run format:*)",
+      "Bash(pwd:*)",
+      "Bash(which:*)",
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)"
+    ],
+    "deny": [],
+    "notes": [
+      "Whitelisted commands are safe read-only or standard build operations.",
+      "Dangerous commands (rm, sudo, chmod, git push, git reset --hard) require explicit approval.",
+      "Based on Boris Cherny workflow - reduce friction for safe operations."
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm run format || true"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boris Workflow Test Page</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 1rem 0;
+        }
+        p {
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+        button {
+            background: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .checklist {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .checklist li {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Boris Workflow Test ✅</h1>
+        <p>This page tests the Playwright visual verification workflow from Boris Cherny's Claude Code methodology.</p>
+        <p><strong>Key principle:</strong> Visual verification delivers a 2-3x quality improvement over blind coding.</p>
+
+        <div class="checklist">
+            <h3>Testing Checklist:</h3>
+            <ul>
+                <li>✅ Page loads correctly</li>
+                <li>✅ Styling renders properly</li>
+                <li>✅ Gradient background displays</li>
+                <li>✅ Card with blur effect visible</li>
+                <li>✅ Button is interactive</li>
+            </ul>
+        </div>
+
+        <button onclick="alert('✅ Click verified! Playwright can interact with this page.')">Test Button</button>
+    </div>
+
+    <script>
+        console.log('Boris workflow test page loaded successfully');
+    </script>
+</body>
+</html>

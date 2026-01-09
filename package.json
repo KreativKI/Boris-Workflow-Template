@@ -1,0 +1,22 @@
+{
+  "name": "boris_claude_code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Build step (placeholder)'",
+    "test": "echo 'Running tests (placeholder)' && exit 0",
+    "typecheck": "echo 'Type checking (placeholder)'",
+    "lint": "echo 'Linting (placeholder)'",
+    "format": "echo 'Formatting code (placeholder)'",
+    "dev": "echo 'Starting dev server (placeholder)'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "playwright": "^1.57.0"
+  }
+}
