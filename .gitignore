@@ -1,16 +1,40 @@
-# Claude Code checkpoints
-.claudecheckpoints/
-
-# Node modules
+# Dependencies
 node_modules/
 
-# Mac system files
-.DS_Store
+# Build output
+dist/
+build/
+.next/
+out/
 
-# Local settings (keep personal, don't share)
+# Claude Code
+.claudecheckpoints/
 .claude/settings.local.json
 
 # Test artifacts
 test-results/
 playwright-report/
-screenshots/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
