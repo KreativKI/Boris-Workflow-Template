@@ -157,6 +157,33 @@ The Meta-Rule in `CLAUDE.md` tracks mistakes and solutions:
 - Node.js 18+ (for npm/bun commands)
 - Git
 
+## Recommended Global Plugins
+
+Install these plugins globally for the full Boris workflow experience:
+
+```bash
+# Core workflow plugins
+claude plugin add ralph-loop@claude-plugins-official      # Iterative autonomous loops
+claude plugin add commit-commands@claude-plugins-official # Git commit/push/PR workflow
+claude plugin add feature-dev@claude-plugins-official     # Guided feature development
+claude plugin add pr-review-toolkit@claude-plugins-official # Comprehensive PR review
+
+# Optional but recommended
+claude plugin add agent-sdk-dev@claude-code-plugins       # For building Claude Agent SDK apps
+```
+
+### Plugin Quick Reference
+
+| Plugin | When to Use |
+|--------|-------------|
+| `ralph-loop` | Long autonomous tasks with clear completion criteria |
+| `commit-commands` | Daily git workflow (commit, push, PR) |
+| `feature-dev` | Structured feature development |
+| `pr-review-toolkit` | Thorough PR review before merge |
+| `agent-sdk-dev` | Creating new Claude Agent SDK applications |
+
+See the "What Boris Would Do" section in `CLAUDE.md` for detailed usage guidance.
+
 ## Sources
 
 This template is based on verified sources:

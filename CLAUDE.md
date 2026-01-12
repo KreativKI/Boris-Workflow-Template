@@ -338,6 +338,104 @@ Follow the "Explore, Plan, Code, Commit" sequence:
 
 ---
 
+## Available Plugins & When to Use Them
+
+### Globally Installed Plugins
+
+Install these plugins globally for enhanced workflow:
+
+```bash
+# Install recommended plugins
+claude plugin add ralph-loop@claude-plugins-official
+claude plugin add agent-sdk-dev@claude-code-plugins
+claude plugin add commit-commands@claude-plugins-official
+claude plugin add feature-dev@claude-plugins-official
+claude plugin add pr-review-toolkit@claude-plugins-official
+```
+
+### Plugin Reference
+
+| Plugin | Use When | Command/Usage |
+|--------|----------|---------------|
+| `ralph-loop` | Long-running iterative tasks with clear completion criteria | `/ralph-loop:ralph-loop "prompt" --max-iterations 50` |
+| `agent-sdk-dev` | Creating new Claude Agent SDK applications | `/agent-sdk-dev:new-sdk-app project-name` |
+| `commit-commands` | Git workflow (commit, push, PR) | `/commit-commands:commit-push-pr` |
+| `feature-dev` | Guided feature development with architecture focus | `/feature-dev:feature-dev` |
+| `pr-review-toolkit` | Comprehensive PR review with multiple specialized agents | `/pr-review-toolkit:review-pr` |
+
+### When to Use Each Plugin
+
+**`ralph-loop`** - The "Ralph Wiggum" technique for autonomous iteration:
+- Tasks with clear, testable completion criteria
+- Greenfield projects you can walk away from
+- Tasks requiring multiple iterations (tests, refinement)
+- NOT for tasks requiring human judgment or design decisions
+
+**`agent-sdk-dev`** - For building Claude Agent SDK applications:
+- Creating new agents in Python or TypeScript
+- Scaffolding with best practices
+- Automatic verification of SDK setup
+
+**`feature-dev`** - Guided feature development:
+- New features requiring architecture planning
+- Complex implementations spanning multiple files
+- When you want structured guidance through the process
+
+**`pr-review-toolkit`** - Comprehensive code review:
+- Before merging PRs
+- Multi-aspect review (code quality, tests, error handling, types)
+- When you want thorough automated review
+
+---
+
+## What Boris Would Do
+
+Quick reference for applying the Boris Cherny workflow to common situations:
+
+### Starting a New Feature
+
+```
+1. git checkout -b feature/name
+2. Use Plan Mode (Shift+Tab twice) to design approach
+3. /feature-dev:feature-dev "feature description"
+4. Run code-reviewer agent after implementation
+5. Run code-simplifier agent to clean up
+6. /commit-commands:commit-push-pr
+```
+
+### Long Autonomous Task
+
+```
+1. Define clear completion criteria
+2. /ralph-loop:ralph-loop "Build X. Requirements: Y, Z. Output <promise>DONE</promise> when complete." --max-iterations 50 --completion-promise "DONE"
+3. Walk away, let it iterate
+4. Review results when complete
+```
+
+### Creating an Agent SDK App
+
+```
+1. /agent-sdk-dev:new-sdk-app my-agent
+2. Follow interactive prompts (language, type, etc.)
+3. Verifier agent runs automatically
+4. Start building your agent logic
+```
+
+### Quick Reference Table
+
+| Situation | Boris Approach |
+|-----------|----------------|
+| Starting new feature | Plan Mode → `/feature-dev` → code-reviewer → code-simplifier → commit |
+| Long autonomous task | `/ralph-loop` with clear completion criteria |
+| Creating Agent SDK app | `/agent-sdk-dev:new-sdk-app` |
+| Code review | Run code-reviewer agent (confidence ≥80%) |
+| Before PR | build-validator agent → verify-app agent |
+| After writing code | code-simplifier agent |
+| Complex architecture | code-architect agent |
+| Production incident | oncall-guide agent |
+
+---
+
 ## Thinking Modes
 
 Use these phrases to trigger different levels of reasoning:
