@@ -449,6 +449,31 @@ Use these phrases to trigger different levels of reasoning:
 
 ---
 
+## Skills & Agents Policy
+
+### No Edit Downloaded Skills/Agents Rule
+
+**STRICT POLICY: Never edit downloaded skills, agents, or plugins without explicit user permission.**
+
+Reasoning:
+- Downloaded skills have been crafted and tested by their authors
+- Edits cannot be verified by non-programmer users
+- The skill may already exist in a different form - check first
+- Modifications break the trust chain of curated content
+
+**Before modifying ANY skill/agent file:**
+1. STOP and notify the user with a clear explanation of why the edit is needed
+2. Wait for explicit approval
+3. If the user declines, suggest alternatives (e.g., creating a new skill instead)
+
+**Before creating custom skills/agents:**
+1. Check official sources: `~/.claude/plugins/cache/`
+2. Check user's skills library (if configured)
+3. Check project-local `.claude/skills/` and `.claude/agents/`
+4. Only create new if nothing suitable exists
+
+---
+
 ## Meta-Rule
 
 **Every time Claude makes a mistake, add a rule to this file so it doesn't happen again.**
@@ -466,6 +491,7 @@ This is how the agent learns and improves over time. Document:
 | 2026-01-09 | PostToolUse hook without error handling could block edits | Always use `\|\| true` in hook commands to prevent failures. |
 | 2026-01-09 | Assumed HTML renders correctly without verification | Always use Playwright visual verification for web content. |
 | 2026-01-09 | Created custom subagents without checking official sources | **NEVER create subagents or skills without first checking official Anthropic sources** (`~/.claude/plugins/marketplaces/claude-plugins-official/`). Use official templates as base. |
+| 2026-01-12 | Attempted to edit downloaded agent files without permission | **NEVER edit downloaded skills/agents without explicit user notification and approval.** |
 
 ---
 
