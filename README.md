@@ -31,6 +31,26 @@ cp -r Boris_Claude_Code/.claude your-project/
 cp Boris_Claude_Code/CLAUDE.md your-project/
 ```
 
+### Install Dependencies (One-Time Setup)
+
+The template includes a smart auto-format hook. Install the formatter for your project type:
+
+**For Python projects:**
+```bash
+pip install ruff
+# Or install all dev dependencies:
+pip install -r requirements-dev.txt
+```
+
+**For Node.js projects:**
+```bash
+npm install
+# or
+bun install
+```
+
+The hook auto-detects your project type and uses the appropriate formatter.
+
 ### Start Using
 
 ```bash
@@ -87,8 +107,12 @@ EXPLORE → PLAN → CODE → VERIFY → SIMPLIFY → COMMIT
 │   ├── commit-push-pr.md
 │   ├── commit.md
 │   └── feature-dev.md
+├── hooks/            # Auto-run scripts
+│   └── auto-format.sh  # Smart formatter (Python/Node/Rust/Go)
 └── settings.json     # Permissions and hooks
 CLAUDE.md             # Project instructions and standards
+requirements-dev.txt  # Python dev dependencies (ruff, pytest, mypy)
+package.json          # Node.js dev dependencies
 ```
 
 ## Customization
@@ -112,9 +136,19 @@ Modify `.claude/settings.json` to:
 
 ## Key Features
 
-### Auto-Formatting Hook
+### Smart Auto-Formatting Hook
 
-Every file edit automatically triggers formatting:
+Every file edit automatically triggers formatting via `.claude/hooks/auto-format.sh`:
+
+```bash
+# Auto-detects project type and runs appropriate formatter:
+# - Python: ruff format (or black)
+# - Node.js: bun run format (or npm run format)
+# - Rust: cargo fmt
+# - Go: gofmt
+```
+
+The hook is configured in `.claude/settings.json`:
 
 ```json
 {
@@ -123,12 +157,14 @@ Every file edit automatically triggers formatting:
       "matcher": "Write|Edit",
       "hooks": [{
         "type": "command",
-        "command": "bun run format || true"
+        "command": ".claude/hooks/auto-format.sh || true"
       }]
     }]
   }
 }
 ```
+
+**Important:** Install the formatter for your project type (see Quick Start above).
 
 ### Thinking Modes
 
@@ -154,8 +190,15 @@ The Meta-Rule in `CLAUDE.md` tracks mistakes and solutions:
 ## Requirements
 
 - [Claude Code](https://claude.ai/code) CLI installed
-- Node.js 18+ (for npm/bun commands)
 - Git
+
+**For Python projects:**
+- Python 3.10+
+- ruff (install via `pip install ruff`)
+
+**For Node.js projects:**
+- Node.js 18+ or Bun
+- Run `npm install` or `bun install`
 
 ## Recommended Global Plugins
 
