@@ -212,6 +212,7 @@ This is how the agent learns. Document: what went wrong, the new rule, date adde
 | 2026-01-12 | Edited downloaded agent without permission | Never edit downloaded skills/agents without approval |
 | 2026-01-16 | Skipped agents for "template work" assuming it wasn't real code | ALL code changes require full workflow - templates, CSS, config, everything |
 | 2026-01-16 | Confused template source project with actual template location | Verify exact file paths before editing; `/Volumes/DevDrive/boris_claude_code_template/` is the template, not `Github_dev/Boris_Claude_Code/` |
+| 2026-01-16 | Copied template without removing `.git`, pushed to wrong repo | When creating new project from template: ALWAYS `rm -rf .git && git init` before working |
 
 ---
 
