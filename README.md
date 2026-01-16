@@ -13,35 +13,38 @@ This template provides:
 
 ## Quick Start
 
-> ⚠️ **IMPORTANT:** If copying the entire folder, you MUST remove the `.git` directory and initialize fresh. Otherwise your project will push to this template's repository!
-
-### Option 1: Clone and Customize (Recommended)
+### Option 1: Copy Folder + Run Setup (Recommended)
 
 ```bash
-git clone https://github.com/KreativKI/Boris-Workflow-Template.git my-project
+# Copy the template folder (Finder or terminal)
+cp -r boris_claude_code_template my-project
 cd my-project
-rm -rf .git                    # ← CRITICAL: Remove template's git history
-git init                       # ← Start fresh git repository
-git remote add origin git@github.com:YourUser/my-project.git  # ← Your repo
-# Customize CLAUDE.md for your project
+
+# Run the setup script (handles everything automatically)
+./setup.sh
 ```
+
+The setup script will:
+- Remove the template's `.git` folder
+- Initialize a fresh git repository
+- Optionally set your remote URL and push
+- Create initial commit
+- Delete itself when done
 
 ### Option 2: Copy to Existing Project
 
 ```bash
-# Copy ONLY the .claude folder and CLAUDE.md (NOT the .git folder!)
+# Copy ONLY the .claude folder and CLAUDE.md
 cp -r Boris-Workflow-Template/.claude your-project/
 cp Boris-Workflow-Template/CLAUDE.md your-project/
 ```
 
-### Option 3: Full Folder Copy (Be Careful!)
+### Option 3: Clone from GitHub
 
 ```bash
-cp -r Boris-Workflow-Template my-project
+git clone https://github.com/KreativKI/Boris-Workflow-Template.git my-project
 cd my-project
-rm -rf .git                    # ← MUST DO THIS or you'll push to wrong repo!
-git init
-git remote add origin git@github.com:YourUser/my-project.git
+./setup.sh
 ```
 
 ### Install Dependencies (One-Time Setup)
