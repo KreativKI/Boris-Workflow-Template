@@ -15,9 +15,26 @@ EXPLORE → PLAN → CODE → VERIFY → SIMPLIFY → COMMIT
 1. **Explore:** Read relevant files first ("don't write code yet")
 2. **Plan:** Use Plan Mode (Shift+Tab twice) for complex problems
 3. **Code:** Implement the solution
-4. **Verify:** Run tests, use Playwright for visual verification
-5. **Simplify:** Run code-simplifier agent
-6. **Commit:** Use `/commit-commands:commit-push-pr`
+4. **Verify:** Run `code-reviewer` agent, THEN Playwright for visual (both required)
+5. **Simplify:** Run `code-simplifier` agent (not optional)
+6. **Commit:** Run `build-validator`, then commit. Don't wait to be asked.
+
+**MANDATORY:** Steps 4-6 are not optional. Every code change goes through all agents.
+
+---
+
+## What Counts as Code
+
+**ALL of these require the full workflow:**
+- Application logic (Python, TypeScript, Go, Rust, etc.)
+- Templates (PHP, HTML, Jinja, EJS, etc.)
+- Stylesheets (CSS, SCSS, Tailwind configs)
+- Configuration files (JSON, YAML, .env examples, webpack, etc.)
+- Build scripts and automation (Makefiles, shell scripts)
+- Database migrations and schemas
+- Infrastructure as code (Terraform, Docker, K8s manifests)
+
+**There is no "simple" code.** A PHP template can have security issues. CSS can break layouts. Config files can expose secrets. Migrations can corrupt data. Run the agents on everything.
 
 ---
 
@@ -144,18 +161,22 @@ claude plugin add agent-sdk-dev@claude-code-plugins
 - **Branch First:** Never commit directly to main
 - **Commit Often:** When a step is complete and verified
 - **Conventional Commits:** Use `feat:`, `fix:`, `docs:`, `refactor:`, etc.
+- **Auto-commit Trigger:** When features/pages are verified working, commit immediately. Don't wait for user to ask.
 
 ---
 
 ## Visual Verification
 
-**CRITICAL:** After creating HTML/Web content, use Playwright to verify rendering.
+**CRITICAL:** Playwright is for visual checks, NOT a replacement for code review agents.
 
 ```
-Write Code → Open Browser → Analyze Screenshot → Fix if needed
+Write Code → code-reviewer → code-simplifier → Playwright visual check → verify-app agent → commit
 ```
 
-This delivers 2-3x quality improvement over blind coding.
+- Playwright answers: "Does it look right?"
+- Agents answer: "Is the code correct, secure, and clean?"
+
+**You need both.** Visual verification alone is not sufficient.
 
 ---
 
@@ -189,6 +210,8 @@ This is how the agent learns. Document: what went wrong, the new rule, date adde
 | 2026-01-09 | Hook without error handling blocked edits | Always use `|| true` in hook commands |
 | 2026-01-09 | Assumed HTML renders correctly | Always use Playwright visual verification |
 | 2026-01-12 | Edited downloaded agent without permission | Never edit downloaded skills/agents without approval |
+| 2026-01-16 | Skipped agents for "template work" assuming it wasn't real code | ALL code changes require full workflow - templates, CSS, config, everything |
+| 2026-01-16 | Confused template source project with actual template location | Verify exact file paths before editing; `/Volumes/DevDrive/boris_claude_code_template/` is the template, not `Github_dev/Boris_Claude_Code/` |
 
 ---
 
