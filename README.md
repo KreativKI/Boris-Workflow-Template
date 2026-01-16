@@ -71,25 +71,36 @@ EXPLORE → PLAN → CODE → VERIFY → SIMPLIFY → COMMIT
 5. **Simplify**: Clean up code (`code-simplifier` agent)
 6. **Commit**: Use `/commit-push-pr` command
 
-## Included Agents
+## Included Agents (Project-Local)
 
-| Agent | Purpose | When to Use |
-|-------|---------|-------------|
-| `code-architect` | Designs feature architectures | Before implementing complex features |
-| `code-reviewer` | Reviews code for bugs and issues | After writing code, before committing |
-| `code-simplifier` | Cleans up code for readability | After code review passes |
-| `build-validator` | Validates build, typecheck, lint, tests | Before committing any changes |
-| `verify-app` | Verifies app functionality | After changes to confirm they work |
-| `oncall-guide` | Incident response guidance | When production issues occur |
+**These agents are already configured in `.claude/agents/` and work immediately without installation.**
 
-## Included Commands
+Claude uses them via the Task tool:
 
-| Command | Description |
-|---------|-------------|
-| `/commit-push-pr` | Full git workflow: commit, push, create PR |
-| `/code-review` | Comprehensive PR code review |
-| `/commit` | Simple git commit |
-| `/feature-dev` | Guided feature development with architecture focus |
+| Agent | How Claude Uses It | When to Use |
+|-------|-------------------|-------------|
+| `code-architect` | `Task(subagent_type="code-architect")` | Before implementing complex features |
+| `code-reviewer` | `Task(subagent_type="code-reviewer")` | After writing code, before committing |
+| `code-simplifier` | `Task(subagent_type="code-simplifier")` | After code review passes |
+| `build-validator` | `Task(subagent_type="build-validator")` | Before committing any changes |
+| `verify-app` | `Task(subagent_type="verify-app")` | After changes to confirm they work |
+| `oncall-guide` | `Task(subagent_type="oncall-guide")` | When production issues occur |
+
+**User prompt examples:**
+- "Use code-architect to design this feature"
+- "Run build-validator before I commit"
+- "Use verify-app to test my changes"
+
+## Included Commands (Project-Local)
+
+**These slash commands are already configured in `.claude/commands/` and work immediately.**
+
+| Command | How to Use | Description |
+|---------|-----------|-------------|
+| `/commit` | Type `/commit` | Create a git commit with current changes |
+| `/commit-push-pr` | Type `/commit-push-pr` | Full workflow: commit → push → create PR |
+| `/code-review` | Type `/code-review` | Comprehensive code review of changes |
+| `/feature-dev` | Type `/feature-dev` | Guided feature development workflow |
 
 ## Configuration Files
 
@@ -200,27 +211,29 @@ The Meta-Rule in `CLAUDE.md` tracks mistakes and solutions:
 - Node.js 18+ or Bun
 - Run `npm install` or `bun install`
 
-## Recommended Global Plugins
+## Recommended Global Plugins (Optional)
 
-Install these plugins globally for the full Boris workflow experience:
+**Note:** The template includes local agents and commands that work immediately. These plugins are **optional enhancements** for additional functionality.
+
+Install these plugins globally (one-time setup):
 
 ```bash
-# Core workflow plugins
-claude plugin add ralph-loop@claude-plugins-official      # Iterative autonomous loops
-claude plugin add commit-commands@claude-plugins-official # Git commit/push/PR workflow
+# Boris's most-used plugins
+claude plugin add ralph-loop@claude-plugins-official      # Autonomous loops for long tasks
+claude plugin add commit-commands@claude-plugins-official # Enhanced git workflow
 claude plugin add feature-dev@claude-plugins-official     # Guided feature development
-claude plugin add pr-review-toolkit@claude-plugins-official # Comprehensive PR review
+claude plugin add pr-review-toolkit@claude-plugins-official # Advanced PR review
 
-# Optional but recommended
-claude plugin add agent-sdk-dev@claude-code-plugins       # For building Claude Agent SDK apps
+# Optional
+claude plugin add agent-sdk-dev@claude-code-plugins       # For building Agent SDK apps
 ```
 
 ### Plugin Quick Reference
 
-| Plugin | When to Use |
-|--------|-------------|
-| `ralph-loop` | Long autonomous tasks with clear completion criteria |
-| `commit-commands` | Daily git workflow (commit, push, PR) |
+| Plugin | Command | When to Use |
+|--------|---------|-------------|
+| `ralph-loop` | `/ralph-loop:ralph-loop "task"` | Long autonomous tasks with clear completion criteria (Boris's secret weapon) |
+| `commit-commands` | `/commit-commands:commit-push-pr` | Enhanced git workflow (similar to local `/commit-push-pr`) |
 | `feature-dev` | Structured feature development |
 | `pr-review-toolkit` | Thorough PR review before merge |
 | `agent-sdk-dev` | Creating new Claude Agent SDK applications |
