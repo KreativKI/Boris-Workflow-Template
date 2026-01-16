@@ -16,7 +16,7 @@ This template provides:
 ### Option 1: Clone and Customize
 
 ```bash
-git clone https://github.com/KreativKI/Boris_Claude_Code.git my-project
+git clone https://github.com/KreativKI/Boris-Workflow-Template.git my-project
 cd my-project
 rm -rf .git
 git init
@@ -27,8 +27,8 @@ git init
 
 ```bash
 # Copy the .claude folder and CLAUDE.md to your project
-cp -r Boris_Claude_Code/.claude your-project/
-cp Boris_Claude_Code/CLAUDE.md your-project/
+cp -r Boris-Workflow-Template/.claude your-project/
+cp Boris-Workflow-Template/CLAUDE.md your-project/
 ```
 
 ### Install Dependencies (One-Time Setup)
