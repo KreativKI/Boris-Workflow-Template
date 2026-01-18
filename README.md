@@ -256,6 +256,25 @@ claude plugin add agent-sdk-dev@claude-code-plugins       # For building Agent S
 
 See the "What Boris Would Do" section in `CLAUDE.md` for detailed usage guidance.
 
+## When to Use What
+
+**For small tasks (hours to days):**
+- Use Boris Workflow alone
+- Perfect for: bug fixes, single features, quick improvements
+- Commands: `/commit`, `/commit-push-pr`, `/code-review`
+- Agents: `code-architect`, `code-reviewer`, `code-simplifier`
+- Setup: None required (everything pre-configured)
+
+**For large projects (weeks to months):**
+- Use GSD + Boris integration
+- Perfect for: multi-phase projects, large features, complex systems
+- GSD provides: Project orchestration, context management, atomic tasks
+- Boris provides: Code quality gates at each phase
+- Setup: Run `./claude/setup-gsd.sh` (one-time installation)
+- Guide: See [docs/GSD_INTEGRATION.md](docs/GSD_INTEGRATION.md)
+
+**Decision rule:** If your project will take more than 1 week of development time, consider using GSD orchestration with Boris quality gates for better organization and quality control.
+
 ## Sources
 
 This template is based on verified sources:

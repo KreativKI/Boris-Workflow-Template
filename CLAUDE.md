@@ -140,6 +140,57 @@ claude plugin add agent-sdk-dev@claude-code-plugins
 
 ---
 
+## Multi-Week Projects: GSD Integration (Optional)
+
+For projects taking >1 week, consider using Get-Shit-Done (GSD) orchestration with Boris quality gates.
+
+**What GSD adds:**
+- Atomic task breakdown (prevents context rot)
+- Parallel execution with fresh 200k context per task
+- Systematic verification phases
+- Project milestone management
+
+**How Boris integrates with GSD phases:**
+
+| GSD Phase | Boris Agent | When to Run |
+|-----------|------------|-------------|
+| **DISCUSS** (design decisions) | `code-architect` | After `/gsd:discuss-phase N` to validate architecture |
+| **EXECUTE** (implement tasks) | `code-reviewer` + `code-simplifier` + `build-validator` | After `/gsd:execute-phase N` completes |
+| **VERIFY** (UAT testing) | `verify-app` + `code-reviewer` | During `/gsd:verify-work N` for automated tests |
+
+**Installation:**
+```bash
+./claude/setup-gsd.sh
+```
+
+**Example workflow:**
+```
+User: /gsd:new-project
+GSD:  [Creates project structure]
+
+User: /gsd:discuss-phase 1
+GSD:  [Captures architectural decisions]
+User: "Use code-architect to validate the architecture"
+Claude: [Runs Task(subagent_type="code-architect")]
+
+User: /gsd:plan-phase 1
+GSD:  [Creates atomic task breakdown]
+
+User: /gsd:execute-phase 1
+GSD:  [Executes tasks in parallel, commits each]
+User: "Run code-reviewer and code-simplifier"
+Claude: [Runs both agents for quality gates]
+
+User: /gsd:verify-work 1
+GSD:  [Manual UAT testing]
+User: "Use verify-app to run automated tests"
+Claude: [Runs Task(subagent_type="verify-app")]
+```
+
+**See:** [docs/GSD_INTEGRATION.md](docs/GSD_INTEGRATION.md) for comprehensive guide.
+
+---
+
 ## What Boris Would Do
 
 | Situation | Approach |
